@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LoginScreen
+namespace RegisterScreen
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,34 +23,33 @@ namespace LoginScreen
         public MainWindow()
         {
             InitializeComponent();
-
-            btnLogin.Click += new RoutedEventHandler(buttonClick);
-            
-            
-            txtregister.MouseUp += new MouseButtonEventHandler(RegisterShow);
-
-        }
-        
-        private void RegisterShow(Object sender, EventArgs e)
-        {
-            RegisterScreen screen = new RegisterScreen();
-            screen.Show();
+            btnRegister.Click += new RoutedEventHandler(buttonClick);
         }
 
         private void buttonClick(object sender, EventArgs e)
         {
-            if (txtMail.Text == "" && password.Password=="")
+            if (txtMail.Text == "" && password.Password == "" && txtName.Text=="" && txtLastname.Text==""&&passwordtry.Password=="")
             {
                 Button clicked = (Button)sender;
-                MessageBox.Show("Mail yada Şifrenizi Boş bıraktınız ");
+                MessageBox.Show(" Boş alan bıraktınız ");
+            }
+            else if (password.Password.Length<6)
+            {
+                Button clicked = (Button)sender;
+                MessageBox.Show(" Şifre 6 basamaktan küçük olamaz! ");
+            }
+            else if (password.Password != passwordtry.Password)
+            {
+                Button clicked = (Button)sender;
+                MessageBox.Show(" Şifreler aynı değil! ");
             }
             else
             {
-                WeekScreen screen = new WeekScreen();
-                screen.Show();
+
             }
-            
-            
+
+
         }
     }
 }
+

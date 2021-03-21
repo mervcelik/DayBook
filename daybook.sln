@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginScreen", "LoginScreen\LoginScreen.csproj", "{01E60A8A-02FB-4287-A118-211D1A7E6711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enitities", "Enitities\Enitities.csproj", "{4BFD600C-EC80-4003-B27B-D488F2139C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enitities", "Enitities\Enitities.csproj", "{4BFD600C-EC80-4003-B27B-D488F2139C3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2846BA26-0F55-4BA0-878B-4CDF6631200C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2846BA26-0F55-4BA0-878B-4CDF6631200C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginScreen"
         mc:Ignorable="d"
-        Title="DayLook" Height="500" Width="800" ResizeMode="NoResize" >
+        Title="DayBook" Height="500" Width="800" ResizeMode="NoResize" >
     <Grid  >
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\90542\source\repos\daybook\Images\Login.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="C:\Users\90542\source\repos\daybook\Images\Login.jpg" />
             </Grid.Background>
         </Grid>
         <StackPanel Margin="30,90,400,114">
@@ -29,9 +29,9 @@
                 </StackPanel>
             </Label>
             <PasswordBox Name="password" Height="25"/>
-            <TextBlock Margin="5,10,0,0"><Hyperlink Foreground="Black" FontWeight="DemiBold" >Şifrenizi mi unuttunuz?</Hyperlink> </TextBlock>
+            <TextBlock Margin="5,10,0,0"><Underline>Şifrenizi mi unuttunuz?</Underline></TextBlock>
             <Button x:Name="btnLogin" Content="Giriş Yap" Background="Silver" FontWeight="DemiBold" Width="150" Height="25" HorizontalAlignment="Center" Margin="0,30,0,20"/>
-            <TextBlock Height="25" Width="150" HorizontalAlignment="Center" FontWeight="DemiBold" Margin="50,0,0,0" ><Hyperlink Foreground="Black"><Run Text="Üye değil misiniz?"/></Hyperlink></TextBlock>
+            <TextBlock Height="25" Width="150" HorizontalAlignment="Center" FontWeight="DemiBold" Margin="50,0,0,0" Name="txtregister"><Underline>Üye değil misiniz?</Underline></TextBlock>
         </StackPanel>
 
     </Grid>

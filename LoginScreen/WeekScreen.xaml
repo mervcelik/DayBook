@@ -1,0 +1,27 @@
+﻿<Window x:Class="LoginScreen.WeekScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginScreen"
+        mc:Ignorable="d"
+        Title="WeekScreen" Height="450" Width="800">
+    <Grid>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Left" Orientation="Vertical"  Margin="0,0,750,0" Width="50">
+                <ToolBar>
+                    <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\ayarlar.png" Width="40" Height="40"/>
+                    </Button>
+                    <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\takvim.png" Width="40" Height="40" />
+                    </Button>
+                    <Button Command="Paste" ToolTip="Paste from Windows Clipboard.">
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\notdefteri.png" Width="40" Height="40" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+        </DockPanel>
+       
+    </Grid>
+</Window>
