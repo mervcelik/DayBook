@@ -1,0 +1,39 @@
+﻿<Window x:Class="Screens.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Screens"
+        mc:Ignorable="d"
+        Title="Login" Height="500" Width="350" WindowStyle="None" ResizeMode="NoResize" >
+    <Grid Visibility="Visible">
+        <Rectangle Height="280" VerticalAlignment="Top" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2281D1"/>
+                    <GradientStop Color="#FF34268A" Offset="1"/>
+                    <GradientStop Color="#FF33288B" Offset="0.75"/>                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image Source="C:\Users\90542\source\repos\daybook\Images\home.png" Width="100" VerticalAlignment="Top" Margin="30" />
+        
+        <Rectangle Width="280" Height="240" Fill="White" VerticalAlignment="Bottom" Margin="0,110" RadiusX="10" >
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#FFBBBBBB" BlurRadius="15" Direction="0" RenderingBias="Quality" ShadowDepth="1" />
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Grid Width="280" Height="240"  VerticalAlignment="Bottom" Margin="0,110">
+            <TextBlock Text="Hoşgeldiniz" HorizontalAlignment="Center" Margin="0,10,0,5" Foreground="Gray" FontSize="18" Grid.RowSpan="2" Width="95" />
+            <StackPanel VerticalAlignment="Center" Margin="10">
+                <TextBox Name="txtEmail" Margin="0,10" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Book Antiqua" FontSize="18"/>
+                <PasswordBox Name="password" Margin="0,10" materialDesign:HintAssist.Hint="Şifre" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" FontFamily="Book Antiqua" FontSize="18"/>
+                <TextBlock Text="Şifrenizi mi unuttunuz?" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Foreground="Gray" Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
+        <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,65" Content="Giriş Yap" Name="btnLogin"/>
+        <TextBlock Text="Üye değil misiniz?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" Foreground="Gray" Cursor="Hand"/>
+
+    </Grid>
+</Window>

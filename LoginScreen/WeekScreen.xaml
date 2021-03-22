@@ -1,27 +1,43 @@
-﻿<Window x:Class="LoginScreen.WeekScreen"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginScreen"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="LoginScreen.WeekScreen"
         mc:Ignorable="d"
         Title="WeekScreen" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <ToolBarTray DockPanel.Dock="Left" Orientation="Vertical"  Margin="0,0,750,0" Width="50">
-                <ToolBar>
-                    <Button Command="Cut" ToolTip="Cut selection to Windows Clipboard.">
-                        <Image Source="C:\Users\90542\source\repos\daybook\Images\ayarlar.png" Width="40" Height="40"/>
-                    </Button>
-                    <Button Command="Copy" ToolTip="Copy selection to Windows Clipboard.">
-                        <Image Source="C:\Users\90542\source\repos\daybook\Images\takvim.png" Width="40" Height="40" />
-                    </Button>
-                    <Button Command="Paste" ToolTip="Paste from Windows Clipboard.">
-                        <Image Source="C:\Users\90542\source\repos\daybook\Images\notdefteri.png" Width="40" Height="40" />
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
+            <Menu DockPanel.Dock="Left" Width="100" HorizontalAlignment="Left" >
+
+                <MenuItem Header="_Ayarlar">
+                    <MenuItem.Icon>
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\ayarlar.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="_Takvim" Height="30">
+                    <MenuItem.Icon>
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\takvim.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="_Not Defteri" Height="30">
+                    <MenuItem.Icon>
+                        <Image Source="C:\Users\90542\source\repos\daybook\Images\notdefteri.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
+            <Calendar DockPanel.Dock="Left" Width="180" HorizontalAlignment="Left" Margin="10"/>
+
         </DockPanel>
-       
+
+        <Grid Background="AliceBlue" Margin="112,180,500,10"  >
+            <TextBlock HorizontalAlignment="Center" Margin="0,0,0,84"> <LineBreak/><Bold>Not Yok!!</Bold></TextBlock>
+        </Grid>
+
+
     </Grid>
+
 </Window>
