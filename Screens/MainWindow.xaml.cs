@@ -24,6 +24,13 @@ namespace Screens
         {
             InitializeComponent();
             btnLogin.Click += new RoutedEventHandler(btnLoginClick);
+            txtRegister.MouseUp += new MouseButtonEventHandler(RegisterShow);
+        }
+
+        private void RegisterShow(object sender, EventArgs e)
+        {            
+            RegisterScreen screen = new RegisterScreen();
+            screen.Show();
         }
 
         private void btnLoginClick(object sender, EventArgs e)
