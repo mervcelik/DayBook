@@ -31,17 +31,25 @@ namespace Screens
         {            
             RegisterScreen screen = new RegisterScreen();
             screen.Show();
+
+            base.Close();
         }
 
         private void btnLoginClick(object sender, EventArgs e)
         {
             if (txtEmail.Text=="" && password.Password=="" )
             {
-                Button clicked = (Button)sender;
+                
                 MessageBox.Show("Boş alan bırakmayınız! ");
             }
             else
             {
+
+                StartScreen startScreen = new StartScreen();
+                startScreen.Show();
+
+                base.Close();
+
 
             }
 

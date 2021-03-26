@@ -11,6 +11,7 @@
         <Rectangle RadiusY="8" RadiusX="8" Fill="White"/>
 
         <Image Source="C:\Users\90542\source\repos\daybook\Images\back.png" Margin="350,0,0,0" Stretch="UniformToFill" />
+
         
         <Rectangle Margin="350,0,0,0">
             <Rectangle.Fill>
