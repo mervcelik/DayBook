@@ -12,21 +12,21 @@
             <Grid Background="White" >
                 <StackPanel Width="250" HorizontalAlignment="Left">
                     <Calendar materialDesign:CalendarAssist.IsHeaderVisible="False" Margin="10"></Calendar>
-                    <materialDesign:DialogHost DialogClosing="Sample5_DialogHost_OnDialogClosing"  Style="{StaticResource MaterialDesignEmbeddedDialogHost}" DialogMargin="8" Margin="10">
+
+                    <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing" DialogTheme="Inherit" Height="Auto" >
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
-                                <TextBlock Text="Not Ekle!" />
-                                <TextBox   Margin="0 8 0 0"  HorizontalAlignment="Stretch" x:Name="TitleTextBox" />
-                                <TextBox   Margin="0 8 0 0"  HorizontalAlignment="Stretch" x:Name="NotesTextBox" />
-                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
-                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True"  Margin="0 8 8 0" Content="ACCEPT"   Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                <TextBlock Text="Add Todo." />
+                                <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="TodoTextBox" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True" Margin="0 8 8 0" Content="ACCEPT" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                 True
                                             </system:Boolean>
                                         </Button.CommandParameter>
                                     </Button>
-                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsCancel="True"  Margin="0 8 8 0" Content="CANCEL" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"  IsCancel="True" Margin="0 8 8 0" Content="CANCEL" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                 False
@@ -36,33 +36,46 @@
                                 </StackPanel>
                             </StackPanel>
                         </materialDesign:DialogHost.DialogContent>
-                        <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}" ClipToBounds="True" HorizontalAlignment="Stretch">
+                        <Border BorderThickness="1" BorderBrush="{DynamicResource PrimaryHueMidBrush}" MinHeight="150" ClipToBounds="True" Margin="10">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition  Height="*" />
-                                    <RowDefinition  Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <ListBox  x:Name="FruitListBox"> 
-                                    <ListBoxItem 
-          Content="Apple" />
-                                    <ListBoxItem
-          Content="Banana" />
-                                    <ListBoxItem
-          Content="Pear" />
-                                </ListBox>
-                                
-                                <materialDesign:ColorZone Mode="PrimaryMid"  Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
-                                    <TextBlock   Margin="16" Text="notlaee" />
+                                <ItemsControl Name="TodoItems">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding toDo}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+
+                                <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                    <TextBlock Margin="16" Text="To-do List" />
                                 </materialDesign:ColorZone>
-                                <Button  Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"      Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"   VerticalAlignment="Bottom"   HorizontalAlignment="Right"  Grid.Row="0"  Margin="0 0 28 -20" Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" VerticalAlignment="Bottom"  HorizontalAlignment="Right" Grid.Row="0" Margin="0 0 28 -20" Content="{materialDesign:PackIcon Kind=Plus, Size=22}" />
                             </Grid>
                         </Border>
                     </materialDesign:DialogHost>
-                </StackPanel>
-
-                <StackPanel>
 
                 </StackPanel>
+
+                <Grid Width="Auto" HorizontalAlignment="Center" Margin="250,10,0,10">
+                    <TextBlock Text="günlük planlama"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+
 
             </Grid>
         </materialDesign:TransitioningContent>

@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -20,12 +21,17 @@ namespace Screens
     /// </summary>
     public partial class HomePage : UserControl
     {
+        public ObservableCollection<Todo> toDoList { get; set; }
         public HomePage()
         {
             InitializeComponent();
+            toDoList = new ObservableCollection<Todo>();
+            TodoItems.ItemsSource = toDoList;
+            
+                    
         }
 
-        private void Sample5_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             Debug.WriteLine($"SAMPLE 1: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
 
@@ -35,9 +41,18 @@ namespace Screens
             if (!Equals(eventArgs.Parameter, true))
                 return;
 
-            if (!string.IsNullOrWhiteSpace(TitleTextBox.Text))
-                FruitListBox.Items.Add(TitleTextBox.Text.Trim());
+            if (!string.IsNullOrWhiteSpace(TodoTextBox.Text))
+                toDoList.Add(new Todo() { toDo=TodoTextBox.Text,IsChecked=false });
+
+            TodoTextBox.Text = "";
         }
+
+        public class Todo
+        {
+            public bool IsChecked { get; set; }
+            public string toDo { get; set; }
+        }
+
 
     }
 }
