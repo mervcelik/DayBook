@@ -10,10 +10,19 @@
     <Grid Background="White">
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White" >
-                <StackPanel Width="250" HorizontalAlignment="Left">
-                    <Calendar materialDesign:CalendarAssist.IsHeaderVisible="False" Margin="10"></Calendar>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+        
+                <Grid Grid.Column="0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Calendar Grid.Row="0" materialDesign:CalendarAssist.IsHeaderVisible="False" Margin="5" Width="235" ></Calendar>
 
-                    <materialDesign:DialogHost DialogClosing="Sample1_DialogHost_OnDialogClosing" DialogTheme="Inherit" Height="Auto" >
+                    <materialDesign:DialogHost Grid.Row="1" DialogClosing="Sample1_DialogHost_OnDialogClosing" DialogTheme="Inherit" Height="Auto" >
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
                                 <TextBlock Text="Add Todo." />
@@ -70,9 +79,9 @@
                         </Border>
                     </materialDesign:DialogHost>
 
-                </StackPanel>
+                </Grid>
 
-                <Grid Width="Auto" HorizontalAlignment="Center" Margin="250,10,0,10">
+                <Grid Grid.Column="1" HorizontalAlignment="Center">
                     <TextBlock Text="günlük planlama"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Grid>
 

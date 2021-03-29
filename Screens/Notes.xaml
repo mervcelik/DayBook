@@ -9,7 +9,98 @@
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Notlar</TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <materialDesign:Card Margin="10">
+                    <StackPanel Margin="10">
+                        <materialDesign:Card Background="#FF2B9ADF" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}" Width="Auto" Padding="8" UniformCornerRadius="6" Margin="20" FontWeight="Bold">
+                            <TextBlock  TextWrapping="Wrap"  Text="Notlar" HorizontalAlignment="Center" FontWeight="Bold"  />
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Height="60" UniformCornerRadius="5" Background="#FFFAFAFA" Margin="0,5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Başlık" FontWeight="Bold" Margin="5,2,0,0" />
+                                <TextBlock Grid.Row="1" Text="İçerik" Margin="3"/>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Height="60" UniformCornerRadius="5" Background="#FFFAFAFA">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Başlık" FontWeight="Bold" Margin="5,2,0,0" />
+                                <TextBlock Grid.Row="1" Text="İçerik" Margin="3"/>
+                            </Grid>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Column="1" Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Height="25" VerticalAlignment="Top" Margin="15,25" materialDesign:HintAssist.Hint="Başlık" Grid.Row="0"/>
+                        <TextBox Margin="15" materialDesign:HintAssist.Hint="Notlar.."  MinLines="50" Grid.Row="1"/>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <ToolBarTray VerticalAlignment="Center" Background="White">
+                                <ToolBar Style="{DynamicResource MaterialDesignToolBar}"  ClipToBounds="False" Background="White">
+
+                                    <Label Content="Font size:"  VerticalAlignment="Center" />
+                                    <ComboBox>
+                                        <ComboBoxItem Content="10" />
+                                        <ComboBoxItem IsSelected="True" Content="12" />
+                                        <ComboBoxItem Content="14" />
+                                        <ComboBoxItem Content="16" />
+                                    </ComboBox>
+                                    
+                                    <Separator />
+                                    
+                                    <ListBox SelectionMode="Extended" Background="White">
+                                        <ListBox.ToolTip>
+                                            <StackPanel>
+                                                <TextBlock   Text="MaterialDesignToolToggleListBox" />
+                                                <TextBlock   Text="Multiple selection" />
+                                                <TextBlock   Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                                            </StackPanel>
+                                        </ListBox.ToolTip>
+                                        <ListBoxItem  Content="{materialDesign:PackIcon Kind=FormatBold}" />
+                                        <ListBoxItem  Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+                                        <ListBoxItem Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+                                    </ListBox>
+                                    <Separator />
+                                    <Button x:Name="ButtonCheck" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" >
+                                        <materialDesign:PackIcon Kind="CheckBox"/>
+                                    </Button>
+                                    <Button x:Name="ButtonNumber" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" >
+                                        <materialDesign:PackIcon Kind="FormatListNumbers"/>
+                                    </Button>
+                                </ToolBar>
+                            </ToolBarTray>
+                            <Grid Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" materialDesign:ButtonAssist.CornerRadius="5" ToolTip="MaterialDesignRaisedDarkButton with Round Corners">
+                                    <TextBlock Text="Kaydet" />
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+
+                </materialDesign:Card>
+               
             </Grid>
         </materialDesign:TransitioningContent>
     </Grid>

@@ -3,13 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Screens" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Screens" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Borsa</TextBlock>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="175"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:Card Width="250" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"  Padding="8" Margin="15">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF3DD1C"/>
+                                <GradientStop Color="#FFFF6C0C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Gold" Width="50" Height="50" />
+                            </TextBlock>
+
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25">
+                                <TextBlock  FontSize="20"  Text="Altın" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                <TextBlock Text="7.9" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+                            </StackPanel>
+                            
+                        </Grid>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Width="250" Grid.Column="1" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"  Padding="8" Margin="15">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFCF7AF3"/>
+                                <GradientStop Color="#FF6C57D3" Offset="1"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Dollar" Width="50" Height="50"/>
+                            </TextBlock>
+
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25">
+                                <TextBlock  FontSize="20"  Text="Dolar" FontWeight="Bold" HorizontalAlignment="Center" />
+                                <TextBlock Text="7.9" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Card>
+
+                    <materialDesign:Card Width="250" Grid.Column="2" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"  Padding="8" Margin="15">
+                        <materialDesign:Card.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF39B4FF"/>
+                                <GradientStop Color="#FF004F9A" Offset="1"/>
+                            </LinearGradientBrush>
+                        </materialDesign:Card.Background>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <materialDesign:PackIcon Kind="Euro" Width="50" Height="50"/>
+                            </TextBlock>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="25">
+                                <TextBlock  FontSize="20"  Text="Euro" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                <TextBlock Text="7.9" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+                            </StackPanel>
+                           
+                        </Grid>
+                    </materialDesign:Card>
+                </Grid>
+                <materialDesign:Card Grid.Row="1" Margin="25">
+                    <Grid>
+                        <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" >
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="Sales" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                            </lvc:CartesianChart.AxisY>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis Title="Month" Labels="{Binding Labels}"></lvc:Axis>
+                            </lvc:CartesianChart.AxisX>
+                        </lvc:CartesianChart>
+                    </Grid>
+                </materialDesign:Card>
             </Grid>
         </materialDesign:TransitioningContent>
     </Grid>
