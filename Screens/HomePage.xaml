@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:schedule="http://schemas.syncfusion.com/wpf"
              xmlns:local="clr-namespace:Screens" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
@@ -11,8 +12,8 @@
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White" >
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
         
                 <Grid Grid.Column="0" HorizontalAlignment="Left">
@@ -82,7 +83,8 @@
                 </Grid>
 
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
-                    <TextBlock Text="günlük planlama"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    
+                    <schedule:SfSchedule ScheduleType="Week" Margin="15" Background="White"/>
                 </Grid>
 
 

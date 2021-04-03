@@ -6,25 +6,29 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Screens"
         mc:Ignorable="d"
-        Title="RegisterScreen" Height="450" Width="500" WindowStyle="None">
+        Title="RegisterScreen" Height="450" Width="600" WindowStyle="None">
     <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10 0">
+                <Button x:Name="Buttonback" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonBack">
+                    <materialDesign:PackIcon Kind="ArrowBack"/>
+                </Button>
+                
+                <Button x:Name="ButtonClose" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonClose_click">
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
 
-        <Rectangle >
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#CC12937A" Offset="1"/>
-                    <GradientStop Color="#CC4683EA"/>
-                    <GradientStop Color="#CC2863B8" Offset="0.2"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+            </StackPanel>
 
-        <Border   Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="10" Width="400" Height="400">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="1"/>
-            </Border.Effect>
-            <StackPanel>
-                <TextBlock Text="Hoşgeldiniz" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,10" FontFamily="Book Antiqua" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Image Source="C:\Users\90542\source\repos\daybook\Images\xx.jfif" HorizontalAlignment="Right" Margin="120,90,0,0" VerticalAlignment="Bottom"  />
+            <StackPanel Width="300" HorizontalAlignment="Left" Margin="20,40,0,0">
+
 
                 <TextBox materialDesign:HintAssist.Hint="Ad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5" FontFamily="Book Antiqua" />
                 <TextBox materialDesign:HintAssist.Hint="Soyad" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5"  FontFamily="Book Antiqua"/>
@@ -32,8 +36,10 @@
                 <PasswordBox materialDesign:HintAssist.Hint="Tekrar Şifre" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0 5"  FontFamily="Book Antiqua"/>
                 <TextBox materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 5"  FontFamily="Book Antiqua"/>
                 <Button Content="Kaydol" Width="200" Margin="0,10"/>
-                
+
             </StackPanel>
-        </Border>
+
+        </Grid>
+        
     </Grid>
 </Window>

@@ -21,5 +21,16 @@ namespace Screens
         {
             InitializeComponent();
         }
+
+        private void ButtonClose_click(object sender, EventArgs e)
+        {
+            base.Close();
+        }
+        private void ButtonBack(object sender, EventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            base.Close();
+        }
     }
 }

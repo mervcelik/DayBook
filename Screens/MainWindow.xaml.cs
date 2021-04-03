@@ -54,5 +54,9 @@ namespace Screens
             }
 
         }
+        private void ButtonClose(object sender ,EventArgs e)
+        {
+            base.Close();
+        }
     }
 }
