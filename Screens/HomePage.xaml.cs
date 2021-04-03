@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using Enitities.Concrete;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,12 +46,6 @@ namespace Screens
                 toDoList.Add(new Todo() { toDo=TodoTextBox.Text,IsChecked=false });
 
             TodoTextBox.Text = "";
-        }
-
-        public class Todo
-        {
-            public bool IsChecked { get; set; }
-            public string toDo { get; set; }
         }
 
 

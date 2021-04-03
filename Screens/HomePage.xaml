@@ -55,7 +55,7 @@
                                 <ItemsControl Name="TodoItems">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid>
+                                            <Grid Margin="5">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="30"/>
                                                     <ColumnDefinition Width="*"/>
