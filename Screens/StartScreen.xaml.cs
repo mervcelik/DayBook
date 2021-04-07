@@ -53,7 +53,7 @@ namespace Screens
                     break;
                 case 3:
                     GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new Reminders());
+                    GridPrincipal.Children.Add(new Timer());
                     break;
                 case 4:
                     GridPrincipal.Children.Clear();

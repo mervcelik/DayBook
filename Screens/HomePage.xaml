@@ -12,11 +12,11 @@
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="300"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
         
-                <Grid Grid.Column="0" HorizontalAlignment="Left">
+                <Grid Grid.Column="0" HorizontalAlignment="Left" Margin="15">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="300"/>
                         <RowDefinition Height="*"/>
@@ -83,8 +83,15 @@
                 </Grid>
 
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
-                    
-                    <schedule:SfSchedule ScheduleType="Week" Margin="15" Background="White"/>
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Margin="5,0,50,20" />
+                    <schedule:SfSchedule ScheduleType="Day" Margin="25,0,90,30" Background="White" TimeInterval = "OneHour" HeaderBackground="#FFD3EFFF"
+                                         CurrentDateBackground="WhiteSmoke"  CurrentDateForeground="Gray" DayViewVerticalLineStroke="DarkGray"
+                                         Name="schedule"  >
+                        <schedule:SfSchedule.AppointmentMapping>
+                            <schedule:ScheduleAppointmentMapping SubjectMapping="Subject"  NotesMapping="Notes" LocationMapping="Location" StartTimeMapping="StartTime" EndTimeMapping="EndTime" ReminderTimeMapping="ReminderTime" StatusMapping="Status"/>
+                        </schedule:SfSchedule.AppointmentMapping>
+                       
+                    </schedule:SfSchedule>
                 </Grid>
 
 

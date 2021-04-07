@@ -10,7 +10,51 @@
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White">
-                <schedule:SfSchedule ScheduleType="Month" Margin="15" Background="White"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,10,0,0">
+                        <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="True" Content="Aylık Plan" Name="Month" Click="ShowMonth"/>
+                        <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" IsChecked="False" Content="Haftalık Plan" Name="Week" Click="ShowWeek"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Margin="50,0">
+                    <schedule:SfSchedule ScheduleType="Month" Margin="15" Background="White" Name="scheduleMonth" FirstDayOfWeek="Monday" HeaderBackground="#FFD3EFFF" 
+                                         CurrentDateBackground="#FF4797C5" CurrentDateForeground="White">
+                        <schedule:SfSchedule.AppointmentMapping>
+                            <schedule:ScheduleAppointmentMapping SubjectMapping="Subject"  NotesMapping="Notes" LocationMapping="Location" StartTimeMapping="StartTime" EndTimeMapping="EndTime" ReminderTimeMapping="ReminderTime" StatusMapping="Status"/>
+                        </schedule:SfSchedule.AppointmentMapping>
+
+                    </schedule:SfSchedule>
+                    <schedule:SfSchedule ScheduleType="Week" Name="scheduleWeek" Visibility="Hidden" TimeInterval = "OneHour" FirstDayOfWeek="Monday"
+                                         CurrentDateBackground="#FF4797C5" CurrentDateForeground="White" >
+                        <schedule:SfSchedule.AppointmentToolTipTemplate>
+                            <ControlTemplate>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <Grid Background="WhiteSmoke"  Height="90" Width="210">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="10"/>
+                                            <RowDefinition/>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Border Grid.Row="0">
+                                            <TextBlock Margin="1,1,0,0" Background="{Binding AppointmentBackground}"  FontSize="16" Text="{Binding Subject}" Grid.Row="0"/>
+                                        </Border>
+                                        <TextBlock FontSize="16" FontWeight="Bold" FontStyle="Italic" Margin="20,0,0,0" Text="Location: " Grid.Row="2"/>
+                                        <TextBlock FontSize="16" Margin="20,0,0,0" Text="{Binding Location}" Grid.Row="3"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </schedule:SfSchedule.AppointmentToolTipTemplate>
+                        <schedule:SfSchedule.AppointmentMapping>
+                            <schedule:ScheduleAppointmentMapping SubjectMapping="Subject"  NotesMapping="Notes" LocationMapping="Location" StartTimeMapping="StartTime" EndTimeMapping="EndTime" ReminderTimeMapping="ReminderTime" StatusMapping="Status"/>
+                        </schedule:SfSchedule.AppointmentMapping>
+
+                    </schedule:SfSchedule>
+                </Grid>
             </Grid>
         </materialDesign:TransitioningContent>
     </Grid>

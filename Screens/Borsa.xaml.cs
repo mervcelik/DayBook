@@ -15,6 +15,12 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
+using System.Xml;
+using System.Net;
+using System.Collections.ObjectModel;
+using Enitities.Concrete;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Screens
 {
@@ -23,45 +29,38 @@ namespace Screens
     /// </summary>
     public partial class Borsa : UserControl
     {
-
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
+        public ObservableCollection<Currency> currencies;
 
         public Borsa()
         {
             InitializeComponent();
 
+            currencies = new ObservableCollection<Currency>();
+            KurBilgileri();
+            CurrencyList.ItemsSource = currencies;
 
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15
-                }
-            };
-
-            Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
-            YFormatter = value => value.ToString("C");
-
-
-
-            DataContext = this;
         }
 
+        public void KurBilgileri()
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load("https://www.tcmb.gov.tr/kurlar/today.xml");
+            var Tarih_Date_Nodes = xml.SelectSingleNode("//Tarih_Date");
+            var CurrencyNodes = Tarih_Date_Nodes.SelectNodes("//Currency");
+            int CurrencyLength = CurrencyNodes.Count;
+
+            for (int i = 0; i < CurrencyLength; i++)
+            {
+                var cn = CurrencyNodes[i];
+                currencies.Add(new Currency
+                {
+                    Unit = cn.ChildNodes[0].InnerXml,
+                    CurrencyName = cn.ChildNodes[2].InnerXml,
+                    ForexBuying = cn.ChildNodes[3].InnerXml,
+                    ForexSelling = cn.ChildNodes[4].InnerXml,
+                });
+            }
+        }
     }
 }
+
