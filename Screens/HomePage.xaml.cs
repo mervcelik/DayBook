@@ -1,5 +1,7 @@
-﻿using Enitities.Concrete;
+﻿using Business.concrete;
+using Enitities.Concrete;
 using MaterialDesignThemes.Wpf;
+using Syncfusion.UI.Xaml.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,26 +25,45 @@ namespace Screens
     public partial class HomePage : UserControl
     {
         public ObservableCollection<Todo> toDoList { get; set; }
-        public ObservableCollection<Meeting> Meetings{ get; set; }
+        public ScheduleManager scheduleManager;
         public HomePage()
         {
             InitializeComponent();
             toDoList = new ObservableCollection<Todo>();
             TodoItems.ItemsSource = toDoList;
-            schedule.ItemsSource = Meetings;
+            scheduleManager = new ScheduleManager();
+            schedule.ItemsSource = scheduleManager.Events;
+
             this.schedule.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
 
+            this.schedule.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
+            
 
+        }
+        private void Schedule_AppointmentEditorClosed(object sender, AppointmentEditorClosedEventArgs e)
+        {
+            var appointment = e.EditedAppointment as ScheduleAppointment;
+            if (appointment != null)
+            {                
+                Meeting meeting = new Meeting
+                {
+                    EventName = appointment.Subject,
+                    Notes = appointment.Notes,
+                    Location = appointment.Location,
+                    From = appointment.StartTime,
+                    To = appointment.EndTime,
+                    IsAllDay = appointment.AllDay
+                };
+                scheduleManager.Add(meeting);
+                e.Handled = true;
+            }
         }
 
         private void Schedule_AppointmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            MessageBox.Show("Değişiklik yapıldı");
+            MessageBox.Show("Değişiklik yapıldı: ");            
         }
-        private void Schedule_ItemsSourceChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show(sender.ToString());
-        }
+
         private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             Debug.WriteLine($"SAMPLE 1: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");

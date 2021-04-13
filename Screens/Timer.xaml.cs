@@ -23,31 +23,23 @@ namespace Screens
         public Timer()
         {
             InitializeComponent();
-
+            Grid.Children.Add(new TimerPageTwo()); 
         }
-
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void selectedClock(object sender , EventArgs e)
         {
-            // Updating the Label which displays the current second
-            //lblSeconds.Content = DateTime.Now.Second;
-
-            // Forcing the CommandManager to raise the RequerySuggested event
-            CommandManager.InvalidateRequerySuggested();
+            Grid.Children.Clear();
+            Grid.Children.Add(new TimerPageOne());
         }
-
-        private void TimerStart(object sender, EventArgs e)
+        private void selectedkronometre(object sender, EventArgs e)
         {
-            DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += new EventHandler(dispatcherTimer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Start();
+            Grid.Children.Clear();
+            Grid.Children.Add(new TimerPageTwo());
         }
-
-        private void TimeSpanEdit_ValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void selectedTime(object sender, EventArgs e)
         {
-            //Get old and new values
-            var oldValue = e.OldValue;
-            var newValue = e.NewValue;
+            Grid.Children.Clear();
+            Grid.Children.Add(new TimerPageThree());
         }
+       
     }
 }

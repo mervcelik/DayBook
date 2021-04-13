@@ -49,5 +49,21 @@ namespace Screens
             clickNote.Visibility = Visibility.Collapsed;
             SaveBox.Visibility = Visibility.Visible;
         }
+
+        private void ShowNotes(object sender, EventArgs eventArgs)
+        {
+            Note notes = new Note {};
+            MessageBoxResult result = MessageBox.Show("notes.Notes"+"\n Notu düzenlemek istermisiniz?", "notes.Header",MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    SaveHeader.Text = notes.Header;
+                    SaveNote.Text = notes.Notes;
+                    break;
+                case MessageBoxResult.No:
+                    
+                    break;
+            }
+        }
     }
 }

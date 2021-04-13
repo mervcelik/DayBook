@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Screens.TimerPageThree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Screens" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Image Source="C:\Users\90542\source\repos\daybook\Images\clockBackground.png" Stretch="UniformToFill"/>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="400" Height="325" UniformCornerRadius="20">
+            <Grid>
+                <TextBlock Text="Dakika giriniz!" FontSize="20" Foreground="Gray" HorizontalAlignment="Center" Margin="5" Name="DakikaGiriniz"/>
+                <syncfusion:SfRadialSlider HorizontalAlignment="Center" Height="200" Minimum="0"  Maximum="180" Name="radialSlider"
+                                                       VerticalAlignment="Bottom" Margin="10,0,0,80" Width="200" 
+                                                       InnerRimStroke="#FFEFF1F6" OuterRimStroke="#FF488EE5"
+                                                       SmallChange="5" TickRadiusFactor="0.5" TickVisibility="Visible" 
+                                                       Content="{Binding SelectedValue,Mode=TwoWay}"  Value="{Binding SelectedValue,Mode=TwoWay}" >
+                    <syncfusion:SfRadialSlider.DataContext>
+                        <local:ViewModel/>
+                    </syncfusion:SfRadialSlider.DataContext>
+                </syncfusion:SfRadialSlider>
+                <TextBlock HorizontalAlignment="Center" Visibility="Hidden" Margin="0,70,0,50" Height="200"  Name="txtTime" FontSize="100"/>
+                <Button  VerticalAlignment="Bottom"  Content="Başla" FontSize="16" Click="TimerStart" Margin="25" Name="startTimer"/>
+                <Button  VerticalAlignment="Bottom"  Content="Durdur" FontSize="16" Click="TimerStop" Margin="25,0,25,50" Visibility="Hidden" Name="Stoptimer"/>
+
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>

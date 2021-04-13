@@ -84,11 +84,12 @@
 
                 <Grid Grid.Column="1" HorizontalAlignment="Center">
                     <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" Padding="32" Margin="5,0,50,20" />
+                    
                     <schedule:SfSchedule ScheduleType="Day" Margin="25,0,90,30" Background="White" TimeInterval = "OneHour" HeaderBackground="#FFD3EFFF"
                                          CurrentDateBackground="WhiteSmoke"  CurrentDateForeground="Gray" DayViewVerticalLineStroke="DarkGray"
                                          Name="schedule"  >
                         <schedule:SfSchedule.AppointmentMapping>
-                            <schedule:ScheduleAppointmentMapping SubjectMapping="Subject"  NotesMapping="Notes" LocationMapping="Location" StartTimeMapping="StartTime" EndTimeMapping="EndTime" ReminderTimeMapping="ReminderTime" StatusMapping="Status"/>
+                            <schedule:ScheduleAppointmentMapping  SubjectMapping="EventName" NotesMapping="Notes" AllDayMapping="AllDay"  LocationMapping="Location" StartTimeMapping="From" EndTimeMapping="To" />
                         </schedule:SfSchedule.AppointmentMapping>
                        
                     </schedule:SfSchedule>

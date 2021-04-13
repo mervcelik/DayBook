@@ -1,4 +1,5 @@
-﻿using Enitities.Concrete;
+﻿using Business.concrete;
+using Enitities.Concrete;
 using Syncfusion.UI.Xaml.Schedule;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,37 @@ namespace Screens
     /// </summary>
     public partial class Calendar : UserControl
     {
-        public ObservableCollection<Meeting> Meetings { get; set; }
+        public ScheduleManager scheduleManager;
         public Calendar()
         {
             InitializeComponent();
-            scheduleWeek.ItemsSource = Meetings;
-            scheduleMonth.ItemsSource = Meetings;
+            ScheduleManager scheduleManager = new ScheduleManager();
+            scheduleWeek.ItemsSource = scheduleManager.Events;
+            scheduleMonth.ItemsSource = scheduleManager.Events;
+
+            this.scheduleWeek.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
+            this.scheduleMonth.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
+
+
+        }
+
+        private void Schedule_AppointmentEditorClosed(object sender, AppointmentEditorClosedEventArgs e)
+        {
+            var appointment = e.EditedAppointment as ScheduleAppointment;
+            if (appointment != null)
+            {
+                Meeting meeting = new Meeting
+                {
+                    EventName = appointment.Subject,
+                    Notes = appointment.Notes,
+                    Location = appointment.Location,
+                    From = appointment.StartTime,
+                    To = appointment.EndTime,
+                    IsAllDay = appointment.AllDay
+                };
+                scheduleManager.Add(meeting);
+                e.Handled = true;
+            }
         }
 
         private void ShowMonth(Object sender,EventArgs e)
