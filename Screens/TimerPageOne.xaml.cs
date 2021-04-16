@@ -19,24 +19,9 @@ namespace Screens
     /// </summary>
     public partial class TimerPageOne : UserControl
     {
-        public ObservableCollection<Clock> Clocks { get; set; }
         public TimerPageOne()
         {
             InitializeComponent();
-            Clocks = new ObservableCollection<Clock>();
-            Clock clock = new Clock { CityName = "denizli", CityClock = "00:00" };
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            Clocks.Add(clock);
-            ClockBox.ItemsSource = Clocks;
-        }
-        public class Clock{
-            public string CityName { get; set; }
-            public string CityClock { get; set; }
         }
     }
 }

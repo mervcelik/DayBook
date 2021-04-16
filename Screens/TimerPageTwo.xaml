@@ -14,7 +14,7 @@
             </Grid.ColumnDefinitions>
             <Grid>
                 <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Margin="5">
-                    <ListView ItemsSource="{Binding Items1}" HorizontalAlignment="Center">
+                    <ListView Name="Roundlist" HorizontalAlignment="Center">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Round}" Header="Tur" />
@@ -34,7 +34,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
                         <Image Source="C:\Users\90542\source\repos\daybook\Images\digitalClock.jfif" />
-                        <TextBlock  Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontWeight="Bold" Margin="0,0,25,50"  FontSize="37"/>
+                        <TextBlock  Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontWeight="Bold" Margin="0,0,25,50"  FontSize="37" Name="txtTime"/>
                     </Grid>
                     
                     <Grid Grid.Row="1">

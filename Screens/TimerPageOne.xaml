@@ -7,44 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Grid Margin="50,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Margin="10" >
-                <StackPanel Margin="10">
-
-                    <ItemsControl Name="ClockBox">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-
-                                <materialDesign:Card Padding="5" Margin="10,20" Width="200" Height="80">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <materialDesign:PackIcon Grid.Column="0" Kind="MapMarkerOutline" Width="40" Height="50"/>
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="{Binding CityName}"  HorizontalAlignment="Center" FontWeight="Bold" Margin="8"/>
-                                            <TextBlock Text="{Binding CityClock}" HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </materialDesign:Card>
-
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-
-                </StackPanel>
+        <materialDesign:Card Width="825" Height="500" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Image Source="C:\Users\90542\source\repos\daybook\Images\map.gif" />
+                <materialDesign:Card Width="125" Height="25" Margin="40,137,660,338" Opacity="0.6" Content="New York" Padding="5"/>
+                <materialDesign:Card Content="Türkiye" Name ="Turkey" Width="125" Height="25" Padding="5" Opacity="0.6" Margin="398,162,302,312" />
+                <materialDesign:Card Content="Los Angeles" Name ="LosAngeles" Width="125" Height="25" Padding="5" Margin="10,187,690,288" Opacity="0.6" />
+                <materialDesign:Card Content="London" Name ="London"  Width="125" Height="25" Padding="5" Margin="206,91,494,384" Opacity="0.6" />
+                <materialDesign:Card Content="Moskova" Name ="Moskova" Width="125" Height="25" Padding="5" Opacity="0.6" Margin="427,91,273,384"  />
+                <materialDesign:Card Content="Paris" Name ="Paris" Width="125" Height="25"  Margin="313,137,387,338" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Dubai" Name ="Dubai" Width="125" Height="25"  Margin="376,199,325,276" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Tokyo" Name ="Tokyo" Width="125" Height="25"  Margin="609,199,91,276" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Sydney" Name="Sydney"  Width="125" Height="25" Margin="609,339,91,136" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Santiago" Name="Santiago" Width="125" Height="25" Margin="72,383,627,92"  Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="São Paulo" Name="SãoPaulo" Width="125" Height="25" Margin="135,339,565,136" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Johannesburg" Name="Johannesburg" Width="125" Height="25" Margin="288,351,413,124" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Singapore" Name="Singapore" Width="125" Height="25"  Margin="546,285,153,190" Padding="5" Opacity="0.6" />
+                <materialDesign:Card Content="Delhi" Name="Delhi" Width="125" Height="25"  Margin="484,238,216,238" Padding="5" Opacity="0.6"/>
+                <materialDesign:Card Content="Beijing" Name="Beijin" Width="125" Height="25"  Margin="528,150,172,326" Padding="5" Opacity="0.6"/>
+                <materialDesign:Card Content="Mexico City" Name="Mexico" Width="125" Height="25"  Margin="55,237,645,238" Padding="5" Opacity="0.6"/>
+                <materialDesign:Card Content="Lagos" Name="Lagos" Width="125" Height="25" Margin="288,238,412,237" Padding="5" Opacity="0.6"/>
+                
             </Grid>
-        </Grid>
-    
+        </materialDesign:Card>
     </Grid>
 </UserControl>

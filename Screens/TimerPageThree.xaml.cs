@@ -22,8 +22,6 @@ namespace Screens
         int hour;
         int minutes;
         int seconds;
-        int startHours;
-        int startMinutes;
         DispatcherTimer dispatcherTimer;
 
         public TimerPageThree()
@@ -45,15 +43,28 @@ namespace Screens
                 startTimer.Visibility = Visibility.Hidden;
                 Stoptimer.Visibility = Visibility.Visible;
 
-                dispatcherTimer = new DispatcherTimer();
+                int value = (int)radialSlider.Value;
+                while (true)
+                {
+                    if (value > 60)
+                    {
+                        value = value - 60;
+                        hour += 1;
+                    }
+                    else
+                    {
+                        minutes = value-1;
+                        break;
+                    }
+                }
+                seconds = 60;
 
+
+                dispatcherTimer = new DispatcherTimer();
                 dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
                 dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
                 dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
                 dispatcherTimer.Start();
-                startHours = DateTime.Now.Hour;
-                startMinutes = DateTime.Now.Minute;
-
             }
         }
 
@@ -75,12 +86,31 @@ namespace Screens
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
-            seconds = DateTime.Now.Second;
-            minutes = DateTime.Now.Minute - startMinutes;
-            hour = DateTime.Now.Hour - startHours;
-            txtTime.Text = hour + ":" + minutes + ":" + seconds;
-
+            seconds--;
+            if(minutes == 0 && seconds == 0 && hour==0)
+            {
+                dispatcherTimer.Stop();
+                radialSlider.Visibility = Visibility.Visible;
+                DakikaGiriniz.Visibility = Visibility.Visible;
+                startTimer.Visibility = Visibility.Visible;
+                Stoptimer.Visibility = Visibility.Hidden;
+                txtTime.Visibility = Visibility.Hidden;
+                radialSlider.Value = 0;
+                MessageBox.Show("Tamamlandı");
+            }
+            if (minutes == 0 && seconds == 0 && hour>0)
+            {
+                hour -= 1;
+                seconds = 59;
+                minutes = 59;
+            }
+            if (seconds==00)
+            {
+                seconds = 59;
+                minutes -= 1;
+            }
+            string fmt = "00.##";
+            txtTime.Text = hour.ToString(fmt)+":"+ minutes.ToString(fmt)+":"+seconds.ToString(fmt);
             CommandManager.InvalidateRequerySuggested();
         }
     }
