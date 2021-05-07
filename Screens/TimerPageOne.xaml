@@ -9,7 +9,7 @@
     <Grid Background="White">
         <materialDesign:Card Width="825" Height="500" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
-                <Image Source="C:\Users\90542\source\repos\daybook\Images\map.gif" />
+                <Image Source="C:\Users\90542\source\repos\daybook\Screens\Images\map.gif" />
                 <materialDesign:Card Width="125" Height="25" Margin="40,137,660,338" Opacity="0.6" Content="New York" Padding="5"/>
                 <materialDesign:Card Content="Türkiye" Name ="Turkey" Width="125" Height="25" Padding="5" Opacity="0.6" Margin="398,162,302,312" />
                 <materialDesign:Card Content="Los Angeles" Name ="LosAngeles" Width="125" Height="25" Padding="5" Margin="10,187,690,288" Opacity="0.6" />

@@ -21,7 +21,7 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <Image Source="C:\Users\90542\source\repos\daybook\Images\register.jfif" Margin="240,150,0,0"  />
+            <Image Source="C:\Users\90542\source\repos\daybook\Screens\Images\register.jfif" Margin="240,150,0,0"/>
 
             <TextBlock Text="Hoşgeldiniz" HorizontalAlignment="Left" Margin="15,60,0,5"  Foreground="DarkGray" FontSize="35" Width="214" FontWeight="Bold" FontFamily="Book Antiqua" />
 

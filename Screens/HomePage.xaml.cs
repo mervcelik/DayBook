@@ -64,7 +64,7 @@ namespace Screens
             MessageBox.Show("Değişiklik yapıldı: ");            
         }
 
-        private void Sample1_DialogHost_OnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        private void ToDoOnDialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             Debug.WriteLine($"SAMPLE 1: Closing dialog with parameter: {eventArgs.Parameter ?? string.Empty}");
 
@@ -80,6 +80,13 @@ namespace Screens
             TodoTextBox.Text = "";
         }
 
+        private void ToDoChecked(object sender, RoutedEventArgs e)
+        {
+            var selected = TodoItemsList.SelectedItem;
+            Todo delete = selected as Todo;
+            toDoList.Remove(delete);
+            MessageBox.Show("silindi");
+        }
 
     }
 }

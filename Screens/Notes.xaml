@@ -44,7 +44,7 @@
                     </StackPanel>
                 </materialDesign:Card>
                 <Grid Grid.Column="1" Margin="10,50" Name="clickNote">
-                    <Image Source="C:\Users\90542\source\repos\daybook\Images\NotesScreen.jfif" Margin="50" Opacity="0.8" />
+                    <Image Source="C:\Users\90542\source\repos\daybook\Screens\Images\NotesScreen.jfif" Margin="50" Opacity="0.8" />
                     <TextBlock Text="Not eklemek için tıklayınız!" HorizontalAlignment="Center" FontSize="20" Foreground="Gray" VerticalAlignment="Bottom" Margin="0,15" />
                 </Grid>
                 

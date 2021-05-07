@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Source="C:\Users\90542\source\repos\daybook\Images\clockBackground.png" Stretch="UniformToFill"/>
+        <Image Source="C:\Users\90542\source\repos\daybook\Screens\Images\clockBackground.png" Stretch="UniformToFill"/>
         <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth3" Width="400" Height="325" UniformCornerRadius="20">
             <Grid>
                 <TextBlock Text="Dakika giriniz!" FontSize="20" Foreground="Gray" HorizontalAlignment="Center" Margin="5" Name="DakikaGiriniz"/>

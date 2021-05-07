@@ -23,20 +23,20 @@
                     </Grid.RowDefinitions>
                     <Calendar Grid.Row="0" materialDesign:CalendarAssist.IsHeaderVisible="False" Margin="5" Width="235" ></Calendar>
 
-                    <materialDesign:DialogHost Grid.Row="1" DialogClosing="Sample1_DialogHost_OnDialogClosing" DialogTheme="Inherit" Height="Auto" >
+                    <materialDesign:DialogHost Grid.Row="1" DialogClosing="ToDoOnDialogClosing" DialogTheme="Inherit" Height="Auto" >
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
                                 <TextBlock Text="Add Todo." />
                                 <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="TodoTextBox" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True" Margin="0 8 8 0" Content="ACCEPT" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True" Margin="0 8 8 0" Content="Kaydet" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                 True
                                             </system:Boolean>
                                         </Button.CommandParameter>
                                     </Button>
-                                    <Button Style="{StaticResource MaterialDesignFlatButton}"  IsCancel="True" Margin="0 8 8 0" Content="CANCEL" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}"  IsCancel="True" Margin="0 8 8 0" Content="Çık" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                         <Button.CommandParameter>
                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                 False
@@ -52,26 +52,30 @@
                                     <RowDefinition  Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <ItemsControl Name="TodoItems">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Margin="5">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}"/>
-                                                <TextBlock Grid.Column="1" Text="{Binding toDo}"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Vertical"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-
+                                <ListBox Name="TodoItemsList">
+                                    <ItemsControl Name="TodoItems" >
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <ListBoxItem>
+                                                    <Grid Margin="5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="30"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}" Checked="ToDoChecked" Name="Check"/>
+                                                        <TextBlock Grid.Column="1" Width="150" Text="{Binding toDo}" VerticalAlignment="Center" Name="TodoTxt"/>
+                                                    </Grid>
+                                                </ListBoxItem>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Vertical"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </ListBox>
+                               
                                 <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">
                                     <TextBlock Margin="16" Text="To-do List" />
                                 </materialDesign:ColorZone>
