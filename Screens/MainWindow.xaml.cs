@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataAccess.AWSclouds;
+using Enitities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace Screens
     /// </summary>
     public partial class MainWindow : Window
     {
+        public User _user;
         public MainWindow()
         {
             InitializeComponent();
+            _user = new User();
             btnLogin.Click += new RoutedEventHandler(btnLoginClick);
             txtRegister.MouseUp += new MouseButtonEventHandler(RegisterShow);
         }
@@ -44,11 +48,23 @@ namespace Screens
             }
             else
             {
+                _user.Email = txtEmail.Text;
+                _user.Password = password.Password;
+                AwsUser awsUser = new AwsUser();
+                if (awsUser.GetUser(_user).Success)
+                {
+                    _user.Id = awsUser.GetUserId(_user).Data;
+                    StartScreen startScreen = new StartScreen();
+                    startScreen.Show();
 
-                StartScreen startScreen = new StartScreen();
-                startScreen.Show();
+                    base.Close();
+                }
+                else
+                {
+                    MessageBox.Show(awsUser.GetUser(_user).Message);
+                }
 
-                base.Close();
+
 
 
             }

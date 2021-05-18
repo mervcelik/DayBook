@@ -29,6 +29,8 @@ namespace Screens
         public HomePage()
         {
             InitializeComponent();
+            MainWindow mainWindow = new MainWindow();
+            MessageBox.Show(mainWindow._user.Email);
             toDoList = new ObservableCollection<Todo>();
             TodoItems.ItemsSource = toDoList;
             scheduleManager = new ScheduleManager();

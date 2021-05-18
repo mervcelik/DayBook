@@ -7,6 +7,7 @@ namespace Enitities.Concrete
     public class Todo
     {
         public int Id { get; set; }
+        public int UId { get; set; }
         public bool IsChecked { get; set; }
         public string toDo { get; set; }
     }
