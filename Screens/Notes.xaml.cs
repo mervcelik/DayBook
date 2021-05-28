@@ -73,6 +73,7 @@ namespace Screens
             SaveNote.Text = "";
             updatebutton.Visibility = Visibility.Hidden;
             savebutton.Visibility = Visibility.Visible;
+            btnDelete.Visibility = Visibility.Hidden;
         }
         
         private void visibilty(object sender, EventArgs eventArgs)
@@ -95,6 +96,7 @@ namespace Screens
                         clickNote.Visibility = Visibility.Collapsed;
                         SaveBox.Visibility = Visibility.Visible;
                         savebutton.Visibility = Visibility.Hidden;
+                        btnDelete.Visibility = Visibility.Visible;
                         updatebutton.Visibility = Visibility.Visible;
                         SaveHeader.Text = notes.Header;
                         SaveNote.Text = notes.Notes;
@@ -105,6 +107,32 @@ namespace Screens
                 }
             }
             
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Note notes = new Note();
+            if (selectedId > -1)
+            {
+                notes = Note[selectedId];
+                MessageBoxResult result = MessageBox.Show(notes.Notes + "\n Notu silmek ister misiniz ?", notes.Header, MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Note.Remove(notes);
+                        awsNotes.DeleteNotes(notes);
+                        SaveHeader.Text = "";
+                        SaveNote.Text = "";
+                        btnDelete.Visibility = Visibility.Hidden;
+                        updatebutton.Visibility = Visibility.Hidden;
+                        savebutton.Visibility = Visibility.Visible;
+                        break;
+                    case MessageBoxResult.No:
+
+                        break;
+                }
+
+            }
         }
     }
 }
