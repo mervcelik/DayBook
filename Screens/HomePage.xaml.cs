@@ -94,18 +94,22 @@ namespace Screens
 
         private void ToDoChecked(object sender, EventArgs e)
         {
-            var selected = TodoItemsList.SelectedIndex;
-            Todo todo = toDoList[selected];
-            if (todo.IsChecked)
+            var selectedId = TodoItemsList.SelectedIndex;
+            Todo todo = new Todo();
+            if (selectedId > -1)
             {
-                todo.IsChecked = false;
-                _awsTodo.UpdateIsChecked(todo);
-            }
-            else
-            {
-                todo.IsChecked = true;
-                _awsTodo.UpdateIsChecked(todo);
-
+                todo = toDoList[selectedId];
+                MessageBoxResult result = MessageBox.Show(todo.toDo + " tamalandı mı?", "Yapılacaklar", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        toDoList.Remove(todo);
+                        _awsTodo.DeleteToDo(todo);
+                        break;
+                    case MessageBoxResult.No:
+                        MessageBox.Show("Başarabileceğine inanıyorum");
+                        break;
+                }
             }
 
         }

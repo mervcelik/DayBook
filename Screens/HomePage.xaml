@@ -55,11 +55,6 @@
                                     <ListBox.Resources>
                                         <DataTemplate x:Key="ContactTemplate">
                                             <Grid Margin="5">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="30"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}"  Name="Check"/>
                                                 <TextBlock Grid.Column="1" Width="150" Text="{Binding toDo}" VerticalAlignment="Center" Name="TodoTxt"/>
                                             </Grid>
                                         </DataTemplate>

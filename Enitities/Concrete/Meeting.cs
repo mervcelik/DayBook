@@ -8,6 +8,8 @@ namespace Enitities.Concrete
 {
     public class Meeting : INotifyPropertyChanged
     {
+        public int Id { get; set; }
+        public int UId { get; set; }
         DateTime from, to;
         string eventName;
         string notes;

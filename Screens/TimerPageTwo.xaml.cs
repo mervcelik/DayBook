@@ -35,8 +35,28 @@ namespace Screens
             InitializeComponent();
             TimePickers = new ObservableCollection<TimepickerValue>();
             Roundlist.ItemsSource = TimePickers;
+            txtReset.MouseUp += new MouseButtonEventHandler(Reset);
         }
+        private void Reset(object sender, EventArgs e)
+        {
+            if(hour>0 || minutes>0 || seconds > 0)
+            {
+                dispatcherTimer.Stop();
+                hour = 0;
+                minutes = 0;
+                seconds = 0;
+                previousHour = 0;
+                previousMinutes = 0;
+                previousSeconds = 0;
+                TimePickers.Clear();
+                txtTime.Text = "00:00:00";
+            }
+            else
+            {
+                MessageBox.Show("Kronometreyi çalıştırmadınız!!");
+            }
 
+        }
         private void StartTimepicker(object sender, EventArgs e)
         {
             dispatcherTimer = new DispatcherTimer();
@@ -52,20 +72,25 @@ namespace Screens
         }
         private void RoundTimepicker(object sender, EventArgs e)
         {
-            previousMinutes = minutes;
-            previousSeconds = seconds;
-            previousHour = hour;
             var round=TimePickers.Count+1;
             var roundtime = "";
             if (round == 1)
             {
-                roundtime = hour + ":" + minutes + ":" + seconds;
+                roundtime = hour.ToString("00.##") + ":" + minutes.ToString("00.##") + ":" + seconds.ToString("00.##");
+
+                previousMinutes = minutes;
+                previousSeconds = seconds;
+                previousHour = hour;
             }
             else if(round>1)
             {
-                roundtime = (previousHour-hour) + ":" + (previousMinutes - minutes)  + ":" + (previousSeconds - seconds);
+                roundtime = (hour- previousHour).ToString("00.##") + ":" + (minutes- previousMinutes).ToString("00.##") + ":" + (seconds- previousSeconds).ToString("00.##");
+
+                previousMinutes = minutes;
+                previousSeconds = seconds;
+                previousHour = hour;
             }
-            TimepickerValue timepickerValue = new TimepickerValue { Round = round.ToString(), RoundTime = roundtime, ElapsedTime = hour + ":" + minutes + ":" + seconds };
+            TimepickerValue timepickerValue = new TimepickerValue { Round = round.ToString(), RoundTime = roundtime, ElapsedTime = hour.ToString("00.##") + ":" + minutes.ToString("00.##") + ":" + seconds.ToString("00.##") };
             TimePickers.Add(timepickerValue);
         }
 
@@ -93,6 +118,11 @@ namespace Screens
             public string Round { get; set; }
             public string RoundTime { get; set; }
             public string ElapsedTime { get; set; }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            
         }
     }
 }

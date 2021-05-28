@@ -11,12 +11,9 @@
     <Grid>
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
             <Grid Background="White">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="650"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid Margin="50" Grid.Column="0">
-                    <ListView Name="CurrencyList">
+
+                <Grid Margin="50" HorizontalAlignment="Center">
+                    <ListView Name="CurrencyList"  Width="750" HorizontalAlignment="Center" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding CurrencyName}" Header="Döviz " />
