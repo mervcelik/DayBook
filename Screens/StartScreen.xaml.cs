@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enitities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace Screens
     /// Interaction logic for StartScreen.xaml
     /// </summary>
     public partial class StartScreen : Window
-    {
+    {        
         public StartScreen()
         {
             InitializeComponent();

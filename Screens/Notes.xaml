@@ -19,28 +19,21 @@
                             <TextBlock  TextWrapping="Wrap"  Text="Notlar" HorizontalAlignment="Center" FontWeight="Bold"  />
                         </materialDesign:Card>
 
-                        <ItemsControl Name="NotesBox">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <materialDesign:Card Height="60" UniformCornerRadius="5" Background="#FFFAFAFA" Margin="0,5" MouseDoubleClick="ShowNotes">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="2*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Grid.Row="0" Text="{Binding Header}" FontWeight="Bold" Margin="5,2,0,0" Name="txtHeader" />
-                                            <TextBlock Grid.Row="1" Text="{Binding Notes}" Margin="3" Name="txtNotes"/>
-                                        </Grid>
-                                    </materialDesign:Card>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
 
+                        <ListBox Name="NotesBox" ItemTemplate="{DynamicResource ContactTemplate}" Margin="2" SelectionChanged="ShowNotes"> 
+                            <ListBox.Resources>
+                                <DataTemplate x:Key="ContactTemplate" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="{Binding Header}" FontWeight="Bold" Margin="5,2,0,0" Name="txtHeader" />
+                                        <TextBlock Grid.Row="1" Text="{Binding Notes}" Margin="3" Name="txtNotes"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.Resources>
+                        </ListBox>
                     </StackPanel>
                 </materialDesign:Card>
                 <Grid Grid.Column="1" Margin="10,50" Name="clickNote">
@@ -97,8 +90,11 @@
                                 </ToolBar>
                             </ToolBarTray>
                             <Grid Grid.Column="1" VerticalAlignment="Center" Margin="10">
-                                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" materialDesign:ButtonAssist.CornerRadius="5" ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Click="SaveNotes">
+                                <Button Name="savebutton" Style="{StaticResource MaterialDesignRaisedDarkButton}" materialDesign:ButtonAssist.CornerRadius="5" ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Click="SaveNotes">
                                     <TextBlock Text="Kaydet" />
+                                </Button>
+                                <Button  Name="updatebutton" Style="{StaticResource MaterialDesignRaisedDarkButton}" materialDesign:ButtonAssist.CornerRadius="5" ToolTip="MaterialDesignRaisedDarkButton with Round Corners" Click="UpdateNotes" Visibility="Hidden">
+                                    <TextBlock Text="Güncelle" />
                                 </Button>
                             </Grid>
                         </Grid>

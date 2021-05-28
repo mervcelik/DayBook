@@ -1,4 +1,6 @@
-﻿using DataAccess.AWSclouds;
+﻿using Core.FileHelper;
+using Core.Results;
+using DataAccess.AWSclouds;
 using Enitities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,7 @@ namespace Screens
         public MainWindow()
         {
             InitializeComponent();
-            _user = new User();
+
             btnLogin.Click += new RoutedEventHandler(btnLoginClick);
             txtRegister.MouseUp += new MouseButtonEventHandler(RegisterShow);
         }
@@ -46,29 +48,36 @@ namespace Screens
                 
                 MessageBox.Show("Boş alan bırakmayınız! ");
             }
-            else
+            DataResult<User> result = getUser();
+            if (result.Success)
             {
-                _user.Email = txtEmail.Text;
-                _user.Password = password.Password;
-                AwsUser awsUser = new AwsUser();
-                if (awsUser.GetUser(_user).Success)
-                {
-                    _user.Id = awsUser.GetUserId(_user).Data;
-                    StartScreen startScreen = new StartScreen();
-                    startScreen.Show();
+                StartScreen startScreen = new StartScreen();
 
-                    base.Close();
-                }
-                else
-                {
-                    MessageBox.Show(awsUser.GetUser(_user).Message);
-                }
-
-
-
-
+                startScreen.Show();
+                base.Close();
+            }
+            else if (!result.Success)
+            {
+                MessageBox.Show(result.Message);
             }
 
+        }
+
+        private DataResult<User> getUser()
+        {
+            _user = new User();
+            _user.Email = txtEmail.Text;
+            _user.Password = password.Password;
+
+            AwsUser awsUser = new AwsUser();
+            Result result = awsUser.GetUser(_user);
+            if (result.Success)
+            {
+                _user.Id = awsUser.GetUserId(_user).Data;
+                FileManager.Write(_user.Id);
+                return new SuccessDataResult<User>(_user);
+            }
+             return new ErrorDataResult<User>(result.Message);     
         }
         private void ButtonClose(object sender ,EventArgs e)
         {

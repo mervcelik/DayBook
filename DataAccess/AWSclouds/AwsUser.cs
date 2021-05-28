@@ -1,4 +1,5 @@
-﻿using Core.Results;
+﻿using Core.Messages;
+using Core.Results;
 using Enitities.Concrete;
 using MySql.Data.MySqlClient;
 using System;
@@ -14,7 +15,7 @@ namespace DataAccess.AWSclouds
         //Dataresult kullanımı
 
 
-        public void AddUser(User user)
+        public Result AddUser(User user)
         {
             AwsConnection awsConnection = new AwsConnection();
             awsConnection.sqlConnection.Open();
@@ -26,16 +27,11 @@ namespace DataAccess.AWSclouds
                 komut.Connection = awsConnection.sqlConnection;
                 komut.CommandText = ekleme;
                 komut.ExecuteNonQuery();
-                Console.WriteLine("başarılı");
+                return new SuccessResult(Message.succces);
 
-            }
-            else
-            {
-                Console.WriteLine("basarısızzzzzz");
             }
             awsConnection.sqlConnection.Close();
-
-
+            return new ErrorResult(Message.Error);
         }
         public Result GetUser(User user)
         {
@@ -52,18 +48,18 @@ namespace DataAccess.AWSclouds
                 if (baglayici.Read())
                 {
                     awsConnection.sqlConnection.Close();
-                    return new SuccessResult("giriş yapıldı");
+                    return new SuccessResult(Message.LoginSucces);
                 }
                 else
                 {
                     awsConnection.sqlConnection.Close();
-                    return new ErrorResult("Email veya password hatalı...");
+                    return new ErrorResult(Message.InvalidMailOrPassword);
                 }
             }
             else
             {
                 awsConnection.sqlConnection.Close();
-                return new ErrorResult("bağlantı basarısızzzzzz");
+                return new ErrorResult(Message.Error);
             }
         }
         public DataResult<int> GetUserId(User user)
@@ -94,7 +90,7 @@ namespace DataAccess.AWSclouds
                 } 
             }
             awsConnection.sqlConnection.Close();
-            return new ErrorDataResult<int>(-1,"Başarısız!");
+            return new ErrorDataResult<int>(-1, Message.Error);
 
 
 

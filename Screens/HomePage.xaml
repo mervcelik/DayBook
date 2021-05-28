@@ -22,11 +22,10 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Calendar Grid.Row="0" materialDesign:CalendarAssist.IsHeaderVisible="False" Margin="5" Width="235" ></Calendar>
-
                     <materialDesign:DialogHost Grid.Row="1" DialogClosing="ToDoOnDialogClosing" DialogTheme="Inherit" Height="Auto" >
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
-                                <TextBlock Text="Add Todo." />
+                                <TextBlock Text="Yapılacak ekle" />
                                 <TextBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="TodoTextBox" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Button Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True" Margin="0 8 8 0" Content="Kaydet" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
@@ -52,28 +51,19 @@
                                     <RowDefinition  Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <ListBox Name="TodoItemsList">
-                                    <ItemsControl Name="TodoItems" >
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <ListBoxItem>
-                                                    <Grid Margin="5">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="30"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}" Checked="ToDoChecked" Name="Check"/>
-                                                        <TextBlock Grid.Column="1" Width="150" Text="{Binding toDo}" VerticalAlignment="Center" Name="TodoTxt"/>
-                                                    </Grid>
-                                                </ListBoxItem>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Vertical"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
+                                <ListBox Name="TodoItemsList" ItemTemplate="{DynamicResource ContactTemplate}" SelectionChanged="ToDoChecked" >
+                                    <ListBox.Resources>
+                                        <DataTemplate x:Key="ContactTemplate">
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox Grid.Column="0" IsChecked="{Binding IsChecked}"  Name="Check"/>
+                                                <TextBlock Grid.Column="1" Width="150" Text="{Binding toDo}" VerticalAlignment="Center" Name="TodoTxt"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.Resources>
                                 </ListBox>
                                
                                 <materialDesign:ColorZone Mode="PrimaryMid" Grid.Row="1" Effect="{DynamicResource MaterialDesignShadowDepth5}">

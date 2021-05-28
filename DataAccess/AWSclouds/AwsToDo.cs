@@ -1,7 +1,10 @@
-﻿using Enitities.Concrete;
+﻿using Core.Messages;
+using Core.Results;
+using Enitities.Concrete;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Text;
 
@@ -11,7 +14,7 @@ namespace DataAccess.AWSclouds
     {
         //Ekleme,Güncelleme(sadece İschecked ),Getirme,Silme
 
-        public void AddToDo(Todo toDo)
+        public Result AddToDo(Todo toDo)
         {
             AwsConnection awsConnection = new AwsConnection();
             awsConnection.sqlConnection.Open();
@@ -23,17 +26,14 @@ namespace DataAccess.AWSclouds
                 komut.Connection = awsConnection.sqlConnection;
                 komut.CommandText = ekleme;
                 komut.ExecuteNonQuery();
-                Console.WriteLine("başarılı");
+                return new SuccessResult(Message.succces);
 
-            }
-            else
-            {
-                Console.WriteLine("basarısızzzzzz");
             }
             awsConnection.sqlConnection.Close();
+            return new ErrorResult(Message.Error);
         }
 
-        public void UpdateIsChecked(Todo toDo)
+        public Result UpdateIsChecked(Todo toDo)
         {
             AwsConnection awsConnection = new AwsConnection();
             awsConnection.sqlConnection.Open();
@@ -45,16 +45,14 @@ namespace DataAccess.AWSclouds
                 komut.Connection = awsConnection.sqlConnection;
                 komut.CommandText = güncelle;
                 komut.ExecuteNonQuery();
-                Console.WriteLine("basarılı");
+                return new SuccessResult(Message.succces);
             }
-            else
-            {
-                Console.WriteLine("basarısızzzzzz");
-            }
+
             awsConnection.sqlConnection.Close();
+            return new ErrorResult(Message.Error);
         }
 
-        public void DeleteToDo(Todo toDo)
+        public Result DeleteToDo(Todo toDo)
         {
             AwsConnection awsConnection = new AwsConnection();
             awsConnection.sqlConnection.Open();
@@ -66,15 +64,12 @@ namespace DataAccess.AWSclouds
                 komut.Connection = awsConnection.sqlConnection;
                 komut.CommandText = sil;
                 komut.ExecuteNonQuery();
-                Console.WriteLine("basarılı");
+                return new SuccessResult(Message.succces);
             }
-            else
-            {
-                Console.WriteLine("basarısızzzzzz");
-            }
+            return new ErrorResult(Message.Error);
         }
 
-        public void GetToDo(int UId)
+        public DataResult<ObservableCollection<Todo>> GetToDo(int UId)
         {
 
             AwsConnection awsConnection = new AwsConnection();
@@ -91,12 +86,22 @@ namespace DataAccess.AWSclouds
                 baglayici.SelectCommand = komut;
                 baglayici.Fill(tablo);
 
-            }
-            else
-            {
-                Console.WriteLine("basarısızzzzzz");
+                ObservableCollection<Todo> collection = new ObservableCollection<Todo>();
+
+                
+                foreach (DataRow dataRow in tablo.Rows)
+                {
+                    Todo toDo = new Todo();
+                    toDo.Id = (int)dataRow["Id"];
+                    toDo.UId = (int)dataRow["UId"];
+                    toDo.IsChecked = (bool)dataRow["IsChecked"];
+                    toDo.toDo = (string)dataRow["Todo"];
+                    collection.Add(toDo);
+                }
+                return new SuccessDataResult<ObservableCollection<Todo>>(collection,Message.succces);
             }
             awsConnection.sqlConnection.Close();
+            return new ErrorDataResult<ObservableCollection<Todo>>(Message.Error);
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using Business.concrete;
+using Core.FileHelper;
+using Core.Results;
+using DataAccess.AWSclouds;
 using Enitities.Concrete;
 using MaterialDesignThemes.Wpf;
 using Syncfusion.UI.Xaml.Schedule;
@@ -26,21 +29,25 @@ namespace Screens
     {
         public ObservableCollection<Todo> toDoList { get; set; }
         public ScheduleManager scheduleManager;
+        public int UId;
+        public AwsToDo _awsTodo;
         public HomePage()
         {
             InitializeComponent();
-            MainWindow mainWindow = new MainWindow();
-            MessageBox.Show(mainWindow._user.Email);
+            _awsTodo = new AwsToDo();
+            UId = FileManager.Read();
+
             toDoList = new ObservableCollection<Todo>();
-            TodoItems.ItemsSource = toDoList;
+            toDoList = _awsTodo.GetToDo(UId).Data;
+ 
+            TodoItemsList.ItemsSource = toDoList;
             scheduleManager = new ScheduleManager();
             schedule.ItemsSource = scheduleManager.Events;
 
             this.schedule.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
 
             this.schedule.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
-            
-
+   
         }
         private void Schedule_AppointmentEditorClosed(object sender, AppointmentEditorClosedEventArgs e)
         {
@@ -76,18 +83,31 @@ namespace Screens
             if (!Equals(eventArgs.Parameter, true))
                 return;
 
+            Todo todo = new Todo() { toDo = TodoTextBox.Text, IsChecked = false };
+            todo.UId = UId;
             if (!string.IsNullOrWhiteSpace(TodoTextBox.Text))
-                toDoList.Add(new Todo() { toDo=TodoTextBox.Text,IsChecked=false });
-
+                toDoList.Add(todo);
+            
+            _awsTodo.AddToDo(todo);
             TodoTextBox.Text = "";
         }
 
-        private void ToDoChecked(object sender, RoutedEventArgs e)
+        private void ToDoChecked(object sender, EventArgs e)
         {
-            var selected = TodoItemsList.SelectedItem;
-            Todo delete = selected as Todo;
-            toDoList.Remove(delete);
-            MessageBox.Show("silindi");
+            var selected = TodoItemsList.SelectedIndex;
+            Todo todo = toDoList[selected];
+            if (todo.IsChecked)
+            {
+                todo.IsChecked = false;
+                _awsTodo.UpdateIsChecked(todo);
+            }
+            else
+            {
+                todo.IsChecked = true;
+                _awsTodo.UpdateIsChecked(todo);
+
+            }
+
         }
 
     }
