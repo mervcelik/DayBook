@@ -1,4 +1,6 @@
-﻿using Business.concrete;
+﻿
+using Core.FileHelper;
+using DataAccess.AWSclouds;
 using Enitities.Concrete;
 using Syncfusion.UI.Xaml.Schedule;
 using System;
@@ -22,18 +24,24 @@ namespace Screens
     /// </summary>
     public partial class Calendar : UserControl
     {
-        public ScheduleManager scheduleManager;
+        public ObservableCollection<Meeting> MeetingList { get; set; }
+        public AwsMeeting _awsMeeting;
+        public int UId;
         public Calendar()
         {
             InitializeComponent();
-            ScheduleManager scheduleManager = new ScheduleManager();
-            scheduleWeek.ItemsSource = scheduleManager.Events;
-            scheduleMonth.ItemsSource = scheduleManager.Events;
+            UId = FileManager.Read();
+            _awsMeeting = new AwsMeeting();
+            MeetingList = new ObservableCollection<Meeting>();
+            MeetingList = _awsMeeting.GetMeeting(UId).Data;
+            scheduleWeek.ItemsSource = MeetingList;
+            scheduleMonth.ItemsSource = MeetingList;
 
             this.scheduleWeek.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
             this.scheduleMonth.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
 
-
+            this.scheduleMonth.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
+            this.scheduleWeek.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
         }
 
         private void Schedule_AppointmentEditorClosed(object sender, AppointmentEditorClosedEventArgs e)
@@ -50,11 +58,36 @@ namespace Screens
                     To = appointment.EndTime,
                     IsAllDay = appointment.AllDay
                 };
-                scheduleManager.Add(meeting);
+                meeting.UId = UId;
+                MeetingList.Add(meeting);
+                _awsMeeting.AddMeeting(meeting);
                 e.Handled = true;
             }
         }
+        private void Schedule_AppointmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            var appointment = e.NewItems as ScheduleAppointment;
+            if (appointment != null)
+            {
+                Meeting meeting = new Meeting
+                {
+                    EventName = appointment.Subject,
+                    Notes = appointment.Notes,
+                    Location = appointment.Location,
+                    From = appointment.StartTime,
+                    To = appointment.EndTime,
+                    IsAllDay = appointment.AllDay
+                };
+                meeting.UId = UId;
+                MeetingList.Add(meeting);
+                _awsMeeting.AddMeeting(meeting);
 
+            }
+            else
+            {
+                MessageBox.Show("olmuyor");
+            }
+        }
         private void ShowMonth(Object sender,EventArgs e)
         {
             scheduleMonth.Visibility = Visibility.Visible;
@@ -65,5 +98,7 @@ namespace Screens
             scheduleWeek.Visibility = Visibility.Visible;
             scheduleMonth.Visibility = Visibility.Hidden;
         }
+
+        
     }
 }

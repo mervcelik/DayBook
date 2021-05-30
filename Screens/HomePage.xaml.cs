@@ -1,4 +1,4 @@
-﻿using Business.concrete;
+﻿
 using Core.FileHelper;
 using Core.Results;
 using DataAccess.AWSclouds;
@@ -28,21 +28,25 @@ namespace Screens
     public partial class HomePage : UserControl
     {
         public ObservableCollection<Todo> toDoList { get; set; }
-        public ScheduleManager scheduleManager;
+        public ObservableCollection<Meeting> meetingList { get; set; }
         public int UId;
         public AwsToDo _awsTodo;
+        public AwsMeeting _awsMeeting;
         public HomePage()
         {
             InitializeComponent();
             _awsTodo = new AwsToDo();
+            _awsMeeting = new AwsMeeting();
             UId = FileManager.Read();
 
             toDoList = new ObservableCollection<Todo>();
             toDoList = _awsTodo.GetToDo(UId).Data;
  
             TodoItemsList.ItemsSource = toDoList;
-            scheduleManager = new ScheduleManager();
-            schedule.ItemsSource = scheduleManager.Events;
+
+            meetingList = new ObservableCollection<Meeting>();
+            meetingList = _awsMeeting.GetMeeting(UId).Data;
+            schedule.ItemsSource = meetingList;
 
             this.schedule.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
 
@@ -63,14 +67,32 @@ namespace Screens
                     To = appointment.EndTime,
                     IsAllDay = appointment.AllDay
                 };
-                scheduleManager.Add(meeting);
+                meeting.UId = UId;
+                meetingList.Add(meeting);
+                _awsMeeting.AddMeeting(meeting);
                 e.Handled = true;
             }
         }
 
         private void Schedule_AppointmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            MessageBox.Show("Değişiklik yapıldı: ");            
+            var appointment = e.NewItems as ScheduleAppointment;
+            if (appointment != null)
+            {
+                Meeting meeting = new Meeting
+                {
+                    EventName = appointment.Subject,
+                    Notes = appointment.Notes,
+                    Location = appointment.Location,
+                    From = appointment.StartTime,
+                    To = appointment.EndTime,
+                    IsAllDay = appointment.AllDay
+                };
+                meeting.UId = UId;
+                meetingList.Add(meeting);
+                _awsMeeting.AddMeeting(meeting);
+
+            }
         }
 
         private void ToDoOnDialogClosing(object sender, DialogClosingEventArgs eventArgs)

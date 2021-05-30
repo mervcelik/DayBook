@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Screens" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" SizeChanged="UserControl_SizeChanged">
+             d:DesignHeight="450" d:DesignWidth="800" >
     <Grid >
         <Grid Background="White">
             <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                 </materialDesign:Card>
                
             </Grid>
-            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Margin="10,5" Grid.Column="1" >
+            <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Margin="10,5" Grid.Column="1">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>
@@ -35,7 +35,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
                         <Image Source="C:\Users\90542\source\repos\daybook\Screens\Images\digitalClock.jfif" Margin="0,10,0,0"/>
-                        <TextBlock  Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontWeight="Bold" Margin="0,0,25,45"  FontSize="32" Name="txtTime"/>
+                        <TextBlock  Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontWeight="Bold" Margin="0,0,25,45"  FontSize="32" Name="txtTime"  />
                     </Grid>
                     
                     <Grid Grid.Row="1">

@@ -7,11 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enitities", "Enitities\Enit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2846BA26-0F55-4BA0-878B-4CDF6631200C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Screens", "Screens\Screens.csproj", "{2A3102F1-97D3-4877-A9BD-C010C335FD43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3F7F1678-0868-490B-A119-67AD80A178C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{3F7F1678-0868-490B-A119-67AD80A178C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{2846BA26-0F55-4BA0-878B-4CDF6631200C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2846BA26-0F55-4BA0-878B-4CDF6631200C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2846BA26-0F55-4BA0-878B-4CDF6631200C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3ED36FB4-0BD0-4FD3-A6C8-CBFCBBAC1898}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A3102F1-97D3-4877-A9BD-C010C335FD43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A3102F1-97D3-4877-A9BD-C010C335FD43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A3102F1-97D3-4877-A9BD-C010C335FD43}.Release|Any CPU.ActiveCfg = Release|Any CPU

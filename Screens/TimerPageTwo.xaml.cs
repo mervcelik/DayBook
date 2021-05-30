@@ -120,9 +120,17 @@ namespace Screens
             public string ElapsedTime { get; set; }
         }
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void sizeChangedTXT(object sender, SizeChangedEventArgs e)
         {
-            
+            Thickness marginThickness = txtTime.Margin;
+            if (this.Height > 450)
+            {
+                marginThickness.Bottom = 500;
+            }
+            else if (this.Height == 450)
+            {
+                marginThickness.Bottom = 45;
+            }
         }
     }
 }

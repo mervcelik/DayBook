@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Enitities.Concrete
 {
-    public class Currency
+    public class Currencies
     {
         public string Unit { get; set; }
         public string CurrencyName { get; set; }

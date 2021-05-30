@@ -58,7 +58,7 @@ namespace Screens
                     break;
                 case 4:
                     GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new Borsa());
+                    GridPrincipal.Children.Add(new Currency());
                     break;
                 case 5:
                     GridPrincipal.Children.Clear();
