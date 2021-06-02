@@ -95,5 +95,35 @@ namespace DataAccess.AWSclouds
 
 
         }
+
+        public Result GetUserEmail(string email)
+        {
+            AwsConnection awsConnection = new AwsConnection();
+            awsConnection.sqlConnection.Open();
+            if (awsConnection.sqlConnection.State != ConnectionState.Closed)
+            {
+                MySqlDataReader baglayici;
+                MySqlCommand komut = new MySqlCommand();
+                string sqlsorgusu = "SELECT * FROM daybook.User Where Email='" + email + "'";
+                komut.CommandText = sqlsorgusu;
+                komut.Connection = awsConnection.sqlConnection;
+                baglayici = komut.ExecuteReader();
+                if (baglayici.Read())
+                {
+                    awsConnection.sqlConnection.Close();
+                    return new SuccessResult(Message.ValidMail);
+                }
+                else
+                {
+                    awsConnection.sqlConnection.Close();
+                    return new ErrorResult(Message.InvalidMail);
+                }
+            }
+            else
+            {
+                awsConnection.sqlConnection.Close();
+                return new ErrorResult(Message.Error);
+            }
+        }
     }
 }

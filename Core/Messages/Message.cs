@@ -10,5 +10,7 @@ namespace Core.Messages
         public static string Error = "Başarısız";
         public static string InvalidMailOrPassword = "Email veya password hatalı...";
         public static string LoginSucces = "Giriş yapıldı";
+        public static string InvalidMail = "geçersiz Email";
+        public static string ValidMail = "Email kayıtlı";
     }
 }

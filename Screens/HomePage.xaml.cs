@@ -50,28 +50,7 @@ namespace Screens
 
             this.schedule.AppointmentCollectionChanged += Schedule_AppointmentCollectionChanged;
 
-            this.schedule.AppointmentEditorClosed += Schedule_AppointmentEditorClosed;
    
-        }
-        private void Schedule_AppointmentEditorClosed(object sender, AppointmentEditorClosedEventArgs e)
-        {
-            var appointment = e.EditedAppointment as ScheduleAppointment;
-            if (appointment != null)
-            {                
-                Meeting meeting = new Meeting
-                {
-                    EventName = appointment.Subject,
-                    Notes = appointment.Notes,
-                    Location = appointment.Location,
-                    From = appointment.StartTime,
-                    To = appointment.EndTime,
-                    IsAllDay = appointment.AllDay
-                };
-                meeting.UId = UId;
-                meetingList.Add(meeting);
-                _awsMeeting.AddMeeting(meeting);
-                e.Handled = true;
-            }
         }
 
         private void Schedule_AppointmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -112,6 +91,7 @@ namespace Screens
             
             _awsTodo.AddToDo(todo);
             TodoTextBox.Text = "";
+           
         }
 
         private void ToDoChecked(object sender, EventArgs e)
@@ -133,7 +113,7 @@ namespace Screens
                         break;
                 }
             }
-
+            
         }
 
     }
